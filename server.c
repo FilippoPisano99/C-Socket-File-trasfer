@@ -9,10 +9,10 @@ void write_file(int sockfd)
 {
     int n; 
     FILE *fp;
-    char *filename = "file2.txt";
+    char *filename = "file2.bin";
     char buffer[SIZE];
 
-    fp = fopen(filename, "w");
+    fp = fopen(filename, "wb");
     if(fp==NULL)
     {
         perror("[-]Error in creating file.");
@@ -26,7 +26,8 @@ void write_file(int sockfd)
             break;
             return;
         }
-        fprintf(fp, "%s", buffer);
+        //fprintf(fp, "%u", buffer);
+	fwrite(buffer, SIZE, 1 , fp);
         bzero(buffer, SIZE);
     }
     return;
@@ -78,5 +79,5 @@ int main ()
      new_sock = accept(sockfd,(struct sockaddr*)&new_addr, &addr_size);
 
      write_file(new_sock);
-     printf("[+]Data written in the text file ");
+     printf("[+]Data written in the text file \n");
 }

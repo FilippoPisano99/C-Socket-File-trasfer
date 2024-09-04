@@ -10,18 +10,22 @@ void send_file(FILE *fp, int sockfd)
 {
     char data[SIZE] = {0};
 
-    while(fgets(data, SIZE, fp)!=NULL)
+    while(fread(data, SIZE,1 , fp)!=NULL)
     {
+	  
         if(send(sockfd, data, sizeof(data), 0)== -1)
         {
             perror("[-] Error in sendung data");
             exit(1);
         }
         bzero(data, SIZE);
+	
+       //for(int i = 0; i<10; i++)
+	// printf("%u ", data[i]);
     }
 }
 
-int main()
+int main( int argc, char** argv )
 {
     char *ip = "127.0.0.1";
     int port = 8080;
@@ -30,7 +34,7 @@ int main()
     int sockfd;
     struct sockaddr_in server_addr;
     FILE *fp;
-    char *filename = "file.txt";
+    char *filename = argv[1];
      sockfd = socket(AF_INET, SOCK_STREAM, 0);
     if(sockfd<0)
     {
@@ -50,7 +54,7 @@ int main()
          exit(1);
      }
      printf("[+]Connected to server.\n");
-     fp = fopen(filename, "r");
+     fp = fopen(filename, "rw");
      if(fp == NULL)
      {
          perror("[-]Error in reading file.");
