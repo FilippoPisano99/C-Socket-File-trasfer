@@ -1,20 +1,22 @@
-# File Transfer Using TCP Socket in C | Socket Programming
+# File Transfer using TCP Socket in C
 
 **OS:** Ubuntu 20.04 LTS</br>
-**IDE:** Visual Studio Code</br>
+**IDE:** Vim</br>
 
 ## Commands to be followed
-### Server:
-Compile Server and execute: 
+
+###Compile:
 ```shell
-gcc -o server server.c
+./compile.sh
+```
+##Execute
+### Server:
+```shell
 ./server
 ```
 ### Client:
-Compile Client and execute: 
 ```shell
-gcc -o client client.c
-./client
+./client [file_to_transfer]
 ```
 
 Output on **Client side** console/terminal:
@@ -34,6 +36,4 @@ Output on **Server side** console/terminal:
 ```
 
 **Note:** </br>
-**1.** You can see the changes in the **file.txt** and **file2.txt** which are present in the repo, since that data get transferred from one file to another !!</br>
-**2.** The Libraries **#include<apra/inet.h>** are available only for the Linux Distros not for the windows, for windows we need to use **#include<winsock2.h>**</br>
-**3.** Kindly Raise Issues if there is any problem or you can mail me at **psp316r@gmail.com** !!
+**1.** The Libraries **#include<apra/inet.h>** are available only for the Linux Distros not for the windows, for windows we need to use **#include<winsock2.h>**</br>
